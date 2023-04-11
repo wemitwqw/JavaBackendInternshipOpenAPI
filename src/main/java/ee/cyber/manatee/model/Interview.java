@@ -20,5 +20,11 @@ public class Interview {
     private Integer id;
 
     @NotNull
+    @OneToOne
+    @JoinColumn(name="application_id", referencedColumnName="id")
+    private Application application;
+
+
+    @NotNull
     private OffsetDateTime interviewDateTime;
 }

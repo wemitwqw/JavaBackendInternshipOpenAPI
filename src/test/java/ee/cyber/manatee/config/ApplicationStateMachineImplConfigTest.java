@@ -30,4 +30,13 @@ public class ApplicationStateMachineImplConfigTest {
         stateMachine.sendEvent(ApplicationEvent.REJECT);
         assertEquals(ApplicationState.REJECTED, stateMachine.getState().getId());
     }
+
+    @Test
+    public void scheduleInterviewInNewStateMachine() {
+        val stateMachine = factory.getStateMachine(UUID.randomUUID());
+        stateMachine.start();
+
+        stateMachine.sendEvent(ApplicationEvent.SCHEDULE);
+        assertEquals(ApplicationState.INTERVIEW, stateMachine.getState().getId());
+    }
 }

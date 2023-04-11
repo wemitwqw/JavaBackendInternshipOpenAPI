@@ -33,9 +33,6 @@ public class Application {
     @ManyToOne(cascade = CascadeType.ALL)
     private Candidate candidate;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Interview interview;
-
     @NotNull
     private OffsetDateTime updatedOn;
 }

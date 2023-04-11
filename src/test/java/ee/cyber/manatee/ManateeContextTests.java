@@ -1,6 +1,9 @@
 package ee.cyber.manatee;
 
 
+import ee.cyber.manatee.api.InterviewApi;
+import ee.cyber.manatee.mapper.InterviewMapper;
+import ee.cyber.manatee.repository.InterviewRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +35,15 @@ class ManateeContextTests {
     @Autowired
     private ApplicationStateInterceptor applicationStateInterceptor;
 
+    @Autowired
+    private InterviewApi interviewApi;
+
+    @Autowired
+    private InterviewRepository interviewRepository;
+
+    @Autowired
+    private InterviewMapper interviewMapper;
+
     @Test
     void contextLoads() {
         assertNotNull(applicationApi);
@@ -39,6 +51,9 @@ class ManateeContextTests {
         assertNotNull(applicationMapper);
         assertNotNull(applicationStateMachine);
         assertNotNull(applicationStateInterceptor);
+        assertNotNull(interviewApi);
+        assertNotNull(interviewRepository);
+        assertNotNull(interviewMapper);
     }
 
 }

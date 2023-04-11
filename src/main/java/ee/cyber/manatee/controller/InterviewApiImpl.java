@@ -1,12 +1,8 @@
 package ee.cyber.manatee.controller;
 
-
-import java.util.List;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,12 +27,13 @@ public class InterviewApiImpl implements InterviewApi {
     private final InterviewService interviewService;
 
     @Override
-    public ResponseEntity<InterviewDto> scheduleInterview(Integer applicationId, InterviewDto interviewDto) {
+    public ResponseEntity<InterviewDto> scheduleInterview(InterviewDto interviewDto) {
         val draftInterview = interviewMapper.dtoToEntity(interviewDto);
-        val interview = interviewService.scheduleInterview(applicationId, draftInterview);
+        val interview = interviewService.scheduleInterview(draftInterview);
 
         return ResponseEntity.status(CREATED)
                 .body(interviewMapper.entityToDto(interview));
+//        return ResponseEntity.ok(interviewDto);
     }
 
 }
