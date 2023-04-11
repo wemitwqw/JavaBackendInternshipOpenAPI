@@ -1,7 +1,5 @@
 package ee.cyber.manatee.api;
 
-import ee.cyber.manatee.dto.ApplicationDto;
-import ee.cyber.manatee.dto.CandidateDto;
 import ee.cyber.manatee.dto.InterviewDto;
 import lombok.val;
 import org.junit.jupiter.api.Test;
@@ -22,27 +20,23 @@ public class InterviewApiTests {
 
     @Test
     public void submitInterviewWithValidData() {
-        val draftCandidate = CandidateDto
-                .builder().firstName("Jenny").lastName("Doe").build();
-        val draftApplication = ApplicationDto
-                .builder().candidate(draftCandidate).build();
-
         val draftInterview = InterviewDto
                 .builder().applicationId(5).interviewDateTime(OffsetDateTime.parse("2023-04-18T15:40:00.00+03:00")).build();
 
-        val response = applicationApi.addApplication(draftApplication);
+        val response = interviewApi.scheduleInterview(draftInterview);
+
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
 
-        val application = response.getBody();
-        assertNotNull(application);
-        assertNotNull(application.getId());
-        assertNotNull(application.getApplicationState());
-        assertNotNull(application.getUpdatedOn());
+        val interview = response.getBody();
+        assertNotNull(interview);
+        assertNotNull(interview.getId());
+        assertNotNull(interview.getApplicationId());
+        assertNotNull(interview.getInterviewDateTime());
 
-        assertEquals(draftApplication.getCandidate().getFirstName(),
-                application.getCandidate().getFirstName());
-        assertEquals(draftApplication.getCandidate().getLastName(),
-                application.getCandidate().getLastName());
+        assertEquals(draftInterview.getApplicationId(),
+                interview.getApplicationId());
+        assertEquals(draftInterview.getInterviewDateTime(),
+                interview.getInterviewDateTime());
     }
 
 }
