@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Data
 @Entity
@@ -20,12 +20,5 @@ public class Interview {
     private Integer id;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    private Application application;
-
-    @NotNull
-    private LocalDateTime interviewDateTime;
-
-    @NotNull
-    private String interviewerName;
+    private OffsetDateTime interviewDateTime;
 }
