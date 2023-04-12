@@ -19,11 +19,8 @@ public class Interview {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @OneToOne
-    @JoinColumn(name="application_id", referencedColumnName="id")
+    @OneToOne(mappedBy = "interview",cascade = CascadeType.ALL)
     private Application application;
-
 
     @NotNull
     private OffsetDateTime interviewDateTime;

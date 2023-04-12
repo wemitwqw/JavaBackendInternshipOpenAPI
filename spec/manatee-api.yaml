@@ -66,13 +66,15 @@ paths:
       responses:
         '202':
           description: Application rejection was accepted and state transition was successful.
-  /interviews:
+  /interviews/application/{applicationId}:
     post:
       operationId: scheduleInterview
       tags:
         - Interview
       summary: Schedule an interview for an application
       description: Schedules a new interview time for an application if the application's state allows to do so.
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
       requestBody:
         description: A new interview information.
         content:
@@ -105,6 +107,8 @@ components:
           $ref: '#/components/schemas/ApplicationState'
         candidate:
           $ref: '#/components/schemas/Candidate'
+        interview:
+          $ref: '#/components/schemas/Interview'
         updatedOn:
           type: string
           format: date-time
@@ -125,12 +129,9 @@ components:
     Interview:
       type: object
       required:
-        - applicationId
         - interviewDateTime
       properties:
         id:
-          type: integer
-        applicationId:
           type: integer
         interviewDateTime:
           type: string
@@ -146,7 +147,6 @@ components:
         - Pre-onboard
         - Hired
         - Rejected
-
 
   parameters:
     ApplicationId:

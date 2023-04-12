@@ -27,13 +27,12 @@ public class InterviewApiImpl implements InterviewApi {
     private final InterviewService interviewService;
 
     @Override
-    public ResponseEntity<InterviewDto> scheduleInterview(InterviewDto interviewDto) {
+    public ResponseEntity<InterviewDto> scheduleInterview(Integer applicationId, InterviewDto interviewDto) {
         val draftInterview = interviewMapper.dtoToEntity(interviewDto);
-        val interview = interviewService.scheduleInterview(draftInterview);
+        val interview = interviewService.scheduleInterview(applicationId, draftInterview);
 
         return ResponseEntity.status(CREATED)
                 .body(interviewMapper.entityToDto(interview));
-//        return ResponseEntity.ok(interviewDto);
     }
 
 }

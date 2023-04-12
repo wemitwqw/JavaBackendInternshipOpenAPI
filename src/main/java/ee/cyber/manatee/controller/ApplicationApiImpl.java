@@ -3,6 +3,12 @@ package ee.cyber.manatee.controller;
 
 import java.util.List;
 
+import ee.cyber.manatee.dto.ApplicationStateDto;
+import ee.cyber.manatee.dto.InterviewDto;
+import ee.cyber.manatee.mapper.InterviewMapper;
+import ee.cyber.manatee.model.Application;
+import ee.cyber.manatee.service.InterviewService;
+import ee.cyber.manatee.statemachine.ApplicationState;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -31,7 +37,10 @@ public class ApplicationApiImpl implements ApplicationApi {
     @Override
     public ResponseEntity<List<ApplicationDto>> getApplications() {
         val applications = applicationService.getApplications();
-        return ResponseEntity.ok(applicationMapper.entitiesToDtoList(applications));
+
+        val applicationsDto = applicationMapper.entitiesToDtoList(applications);
+
+        return ResponseEntity.ok(applicationsDto);
     }
 
     @Override

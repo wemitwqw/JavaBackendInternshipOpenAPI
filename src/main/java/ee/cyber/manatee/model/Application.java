@@ -33,6 +33,11 @@ public class Application {
     @ManyToOne(cascade = CascadeType.ALL)
     private Candidate candidate;
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="interview_id", referencedColumnName="id")
+    private Interview interview;
+
     @NotNull
     private OffsetDateTime updatedOn;
 }
