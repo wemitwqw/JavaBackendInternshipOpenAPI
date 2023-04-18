@@ -1,6 +1,6 @@
 # Manatee API
 
-The following API was done as a solution for Cybernetica 2023 Internship test task and does not provide any meaningful functionalities.
+The following API was done as a solution for an internship test task and does not provide any meaningful functionalities.
 
 ## Getting started
 
